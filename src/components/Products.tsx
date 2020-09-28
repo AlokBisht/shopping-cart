@@ -1,7 +1,7 @@
 import './Products.css';
 import { 
-    DefaultButton, DetailsList, DetailsListLayoutMode,  Dropdown, IColumn, 
-    IDropdownOption, Label, PrimaryButton, SelectionMode 
+    DefaultButton, DetailsList, DetailsListLayoutMode,  DirectionalHint,  Dropdown, HoverCard, HoverCardType, IColumn, 
+    IDropdownOption, Label, PrimaryButton, SelectionMode, Text,
 } from '@fluentui/react';
 import React from 'react';
 import { observer } from 'mobx-react';
@@ -17,7 +17,36 @@ const Productcolumns: IColumn[] = [
         minWidth: 16,
         maxWidth: 400,
         onRender: (item: Product) => {
-            return (<img src={item.iconName} alt={item.iconName} height="50" />);
+            return (
+                <HoverCard
+                plainCardProps={{
+                    onRenderPlainCard: () => {
+                        return (
+                            <div style={{display: 'flex', flexDirection: 'column'}}>
+                            <img 
+                                src={item.iconName} 
+                                alt={item.iconName}
+                            />
+                            <Label styles={{root: {width: '100%', whiteSpace: 'pre-wrap', padding: 5}}}>
+                                <h3>Product Description:</h3>
+                                <Text>{item.desc}</Text>
+                            </Label>
+                            </div>
+                        );
+                    },
+                    calloutProps: {
+                        gapSpace: -80,
+                        isBeakVisible: true,
+                        directionalHint: DirectionalHint.rightCenter,
+                        minPagePadding: 10,
+                    }
+                }}
+                instantOpenOnClick
+                type={HoverCardType.plain}
+                >
+                    <img src={item.iconName} alt={item.iconName} height="50" />
+                </HoverCard>
+            );
         },
     },{
         key: 'productName',
@@ -32,7 +61,7 @@ const Productcolumns: IColumn[] = [
         fieldName: 'price',
         isResizable: true,
         minWidth: 16,
-        maxWidth: 300,
+        maxWidth: 200,
     },
 ];
 
@@ -49,7 +78,7 @@ export const Products = observer(() => {
         isIconOnly: true,
         isResizable: true,
         minWidth: 16,
-        maxWidth: 200,
+        maxWidth: 100,
         onRender: (item: Product) => {
             return (
                 <>
@@ -78,7 +107,7 @@ export const Products = observer(() => {
                                 root: {
                                     width: '100%',
                                     height: '-webkit-fill-available',
-                                    border: '1px solid black',
+                                    overflowX: 'auto',
                                 },
                             }}
             />

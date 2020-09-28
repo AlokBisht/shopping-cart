@@ -5,6 +5,7 @@ export interface Product {
     id: string;
     iconName: string;
     name: string;
+    desc: string;
     price: number;
   }
 
@@ -33,8 +34,9 @@ export function getPageSizeOptions(): IDropdownOption[] {
           {
             id: random.uuid(),
             name: commerce.productName(), 
+            desc: commerce.productDescription(),
             price: Number(commerce.price()), 
-            iconName: `${image.business()}?random=${random.number()}`
+            iconName: `${image.animals()}?random=${random.number(1000000)}`
           }
         );
       }

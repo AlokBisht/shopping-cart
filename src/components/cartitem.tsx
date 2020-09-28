@@ -17,7 +17,7 @@ export const CartItem = observer((props:
             display: 'flex', 
             justifyContent: 'space-between', 
             padding: 5, 
-            borderBottom: '1px solid'
+            borderTop: '1px solid'
             }}>
             <img 
                 src={cartProduct.iconName} 
