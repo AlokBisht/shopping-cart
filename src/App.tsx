@@ -1,25 +1,60 @@
 import React from 'react';
-import logo from './logo.svg';
+import {initializeIcons, Pivot, PivotItem } from '@fluentui/react';
 import './App.css';
+import { Products } from './components/Products';
+import { Cart } from './components/cart';
+import { PastOrders } from './components/pastorders';
+
 
 function App() {
+  initializeIcons();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="App">
+        <Pivot
+        style={{
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+        styles={{
+          root: {
+            width: '100%',
+            height: 'auto',
+            display: 'flex',
+            justifyContent: 'center',
+          },     
+          itemContainer: {
+           height: '-webkit-fill-available',
+           padding: 20,
+          }     
+        }}
         >
-          Learn React
-        </a>
-      </header>
+          <PivotItem           headerText="Products"           itemIcon="Shop" 
+          style={{
+            height: '100%',
+            width: '100%',
+          }}
+          >
+            <Products />
+          </PivotItem>
+          <PivotItem             headerText="Cart" 
+            headerButtonProps={{
+              styles: {
+              root: {marginLeft: 'auto'},              
+            }}} 
+            style={{display: 'flex', flexDirection: 'column'}}
+            itemIcon="ShoppingCartSolid"
+            >
+              <Cart />
+            </PivotItem>
+          <PivotItem             headerText="Past Orders"             itemIcon="History"            >
+                <PastOrders />
+            </PivotItem>
+          
+        </Pivot>
     </div>
+
   );
 }
 

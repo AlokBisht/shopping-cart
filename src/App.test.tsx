@@ -1,9 +1,7 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import { createItems } from './helper';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('Create data', () => {
+  const data = createItems(5);
+  
+  expect(data.length).toBeLessThanOrEqual(5);
 });
